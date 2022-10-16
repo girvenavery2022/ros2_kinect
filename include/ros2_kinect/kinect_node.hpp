@@ -19,18 +19,26 @@
 
 namespace Kinect
 {
-class KinectNode : public rclcpp::Node
-{
-public:
-  explicit KinectNode(const rclcpp::NodeOptions &options);
+	class KinectNode : public rclcpp::Node
+	{
+	public:
+		explicit KinectNode(const rclcpp::NodeOptions &options);
 
-private:
+	private:
 
-	/**
-	 * @brief 
-	 * 
-	 */
-	void setup();
+		/**
+		* @brief 
+		* 
+		*/
+		void setup();
 
-};
+	};
+
+	// Ros2 Publishers
+	rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr rgb_img_publisher;
+	rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr depth_img_publisher;
+	rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr ir_img_publisher;
+	rclcpp::Publisher<sensor_msgs::msg::CameraInfo>::SharedPtr kinect_info_publisher;
+
+
 }  // namespace Kinect
