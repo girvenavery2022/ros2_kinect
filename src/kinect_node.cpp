@@ -3,9 +3,9 @@
 
 namespace Kinect
 {
-  KinectNode::KinectNode(const rclcpp::NodeOptions &options)
+	KinectNode::KinectNode(const rclcpp::NodeOptions &options)
 		: Node("kinect_node", options)
-  {
+	{
 		rgb_img_publisher = this->create_publisher<sensor_msgs::msg::Image>(
 			"/kinect/rgb_img", rclcpp::SensorDataQoS());
 		depth_img_publisher = this->create_publisher<sensor_msgs::msg::Image>(
@@ -14,11 +14,11 @@ namespace Kinect
 			"/kinect/ir_img", rclcpp::SensorDataQoS());
 		img_test_ = this->create_publisher<sensor_msgs::msg::CameraInfo>(
 			"/kinect/kinect_info", rclcpp::SensorDataQoS());
-  }
+	}
 
 
-  void KinectNode::setup()
-  {
+	void KinectNode::setup()
+	{
 
-  }
+	}
 }

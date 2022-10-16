@@ -27,8 +27,8 @@ namespace Kinect
 	private:
 
 		/**
-		* @brief 
-		* 
+		* @brief
+		*
 		*/
 		void setup();
 
