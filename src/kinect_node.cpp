@@ -12,7 +12,7 @@ namespace Kinect
       "/kinect/depth_img", rclcpp::SensorDataQoS());
     ir_img_publisher = this->create_publisher<sensor_msgs::msg::Image>(
       "/kinect/ir_img", rclcpp::SensorDataQoS());
-    img_test_ = this->create_publisher<sensor_msgs::msg::CameraInfo>(
+    kinect_info_publisher = this->create_publisher<sensor_msgs::msg::CameraInfo>(
       "/kinect/kinect_info", rclcpp::SensorDataQoS());
   }
 
