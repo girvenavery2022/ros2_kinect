@@ -1,10 +1,17 @@
-#include <cstdio>
+#include "ros2_kinect/kinect_node.hpp"
+#include <boost/algorithm/string/replace.hpp>
 
-int main(int argc, char ** argv)
+namespace Kinect
 {
-  (void) argc;
-  (void) argv;
+  KinectNode::KinectNode(const rclcpp::NodeOptions &options)
+		: Node("kinect_node", options)
+  {
 
-  printf("hello world ros2_kinect package\n");
-  return 0;
+  }
+
+
+  void KinectNode::setup()
+  {
+
+  }
 }

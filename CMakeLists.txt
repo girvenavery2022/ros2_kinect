@@ -7,14 +7,49 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
+find_package(pcl_conversions REQUIRED)
+find_package(pcl_ros REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(tf2_ros REQUIRED)
+find_package(tf2_geometry_msgs REQUIRED)
+find_package(OpenCV 4 REQUIRED)
+find_package(cv_bridge REQUIRED)
+find_package(image_geometry REQUIRED)
+find_package(Boost REQUIRED COMPONENTS thread)
 
-add_executable(kinect_node src/kinect_node.cpp)
+add_executable(kinect_node 
+  src/kinect_node.cpp
+  src/kinect_node_main.cpp
+)
+
+ament_target_dependencies(
+  kinect_node
+  pcl_conversions
+  pcl_ros
+  rclcpp
+  sensor_msgs
+  std_msgs
+  tf2
+  tf2_ros
+  tf2_geometry_msgs
+  cv_bridge
+  image_geometry
+  Boost
+)
+
+target_link_libraries(kinect_node
+  ${Boost_LIBRARY})
+
 target_include_directories(kinect_node PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:include>)
+  $<INSTALL_INTERFACE:include>
+  ${OpenCV_INCLUDE_DIRS}
+  ${Boost_INCLUDE_DIR}
+  ${LIBFREENECT_INCLUDE_DIRS})
+
 target_compile_features(kinect_node PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
 
 install(TARGETS kinect_node
