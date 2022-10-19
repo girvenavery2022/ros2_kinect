@@ -20,6 +20,11 @@ find_package(cv_bridge REQUIRED)
 find_package(image_geometry REQUIRED)
 find_package(Boost REQUIRED COMPONENTS thread)
 
+find_library(LIBFREENECT_LIBRARY
+  NAMES freenect
+  PATHS ${LIBFREENECT_LIBRARY_DIRS}
+)
+
 add_executable(kinect_node 
   src/kinect_node.cpp
   src/kinect_node_main.cpp
@@ -40,8 +45,9 @@ ament_target_dependencies(
   Boost
 )
 
-target_link_libraries(kinect_node
-  ${Boost_LIBRARY})
+target_link_libraries(kinect_node freenect_sync
+  ${Boost_LIBRARY}
+  ${LIBFREENECT_LIBRARY})
 
 target_include_directories(kinect_node PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
