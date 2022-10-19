@@ -21,57 +21,57 @@
 
 namespace Kinect
 {
-  class KinectNode : public rclcpp::Node
-  {
-  public:
-    explicit KinectNode(const rclcpp::NodeOptions &options);
+	class KinectNode : public rclcpp::Node
+	{
+	public:
+		explicit KinectNode(const rclcpp::NodeOptions &options);
 
-  private:
+	private:
 
-    /**
-    * @brief
-    *
-    */
-    void depthPublisher();
+		/**
+		* @brief
+		*
+		*/
+		void depthPublisher();
 
-    /**
-    * @brief
-    *
-    */
-    void rgbPublisher();
+		/**
+		* @brief
+		*
+		*/
+		void rgbPublisher();
 
-    /**
-    * @brief
-    *
-    */
-    void kinectInfoPublisher();
+		/**
+		* @brief
+		*
+		*/
+		void kinectInfoPublisher();
 
-    /**
-     * @brief 
-     * 
-     * @param index 
-     * @return IplImage* 
-     */
-	  IplImage *freenect_sync_get_depth_cv(int index);
+		/**
+		 * @brief 
+		 * 
+		 * @param index 
+		 * @return IplImage* 
+		 */
+		IplImage *freenect_sync_get_depth_cv(int index);
 
-    /**
-     * @brief 
-     * 
-     * @param index 
-     * @return IplImage* 
-     */
-	  IplImage *freenect_sync_get_rgb_cv(int index);
+		/**
+		 * @brief 
+		 * 
+		 * @param index 
+		 * @return IplImage* 
+		 */
+		IplImage *freenect_sync_get_rgb_cv(int index);
 
-    // Ros2 Publishers
-    rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr rgb_img_publisher;
-    rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr depth_img_publisher;
-    rclcpp::Publisher<sensor_msgs::msg::CameraInfo>::SharedPtr kinect_info_publisher;
+		// Ros2 Publishers
+		rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr rgb_img_publisher;
+		rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr depth_img_publisher;
+		rclcpp::Publisher<sensor_msgs::msg::CameraInfo>::SharedPtr kinect_info_publisher;
 
-    rclcpp::TimerBase::SharedPtr depth_publish_timer;
-    rclcpp::TimerBase::SharedPtr rgb_publish_timer;
-    rclcpp::TimerBase::SharedPtr info_publish_timer;
-    
-    float depth_publish_rate{};
-    float rgb_publish_rate{10};
-  };
+		rclcpp::TimerBase::SharedPtr depth_publish_timer;
+		rclcpp::TimerBase::SharedPtr rgb_publish_timer;
+		rclcpp::TimerBase::SharedPtr info_publish_timer;
+		
+		float depth_publish_rate{};
+		float rgb_publish_rate{10};
+	};
 }  // namespace Kinect
